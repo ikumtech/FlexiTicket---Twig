@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<section class="auth-section">
+  <div class="auth-box">
+    <div class="auth-logo">Flexi<span class="accent">Ticket</span></div>
+    <h2>Create Account</h2>
+
+    <form method="post" class="auth-form" onsubmit="return handleSignup(event)">
+      <label>Email</label>
+      <input type="email" id="signup-email" placeholder="you@example.com" required>
+
+      <label>Password</label>
+      <input type="password" id="signup-password" placeholder="••••••••" required>
+
+      <label>Confirm Password</label>
+      <input type="password" id="signup-confirm" placeholder="••••••••" required>
+
+      <p id="signup-error" class="error" style="display:none;"></p>
+
+      <button class="btn" type="submit">Sign Up</button>
+    </form>
+
+    <p class="switch">
+      Already have an account?
+      <a href="?page=login">Login</a>
+    </p>
+  </div>
+</section>
+{% endblock %}
