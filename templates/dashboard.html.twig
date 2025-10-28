@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<header class="dash-header">
+  <div class="dash-container">
+    <h1>Dashboard</h1>
+
+    <div class="dash-user">
+      <span id="welcomeName">Welcome!</span>
+      <button id="logoutBtn" class="btn ghost small">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="dashboard fade-in">
+  <section class="stats-grid container">
+    <div class="stat-card">
+      <h3>Total Tickets</h3>
+      <p id="totalTickets">0</p>
+    </div>
+    <div class="stat-card open">
+      <h3>Open</h3>
+      <p id="openTickets">0</p>
+    </div>
+    <div class="stat-card progress">
+      <h3>In&nbsp;Progress</h3>
+      <p id="progressTickets">0</p>
+    </div>
+    <div class="stat-card closed">
+      <h3>Closed</h3>
+      <p id="closedTickets">0</p>
+    </div>
+  </section>
+
+  <div class="dash-actions">
+    <a href="?page=tickets" class="btn">Manage Tickets</a>
+  </div>
+</main>
+{% endblock %}

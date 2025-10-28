@@ -1,14 +1,565 @@
-/* AUTH SCREENS */
-.auth-section {
-  min-height: 100vh;
+/* ===============================
+   GLOBAL STYLES
+================================= */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  color: #222;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.accent {
+  color: #0077ff;
+}
+
+/* ===============================
+   HERO SECTION
+================================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #e6f0ff 0%, #ffffff 90%);
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 1rem;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #004aad;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.25rem;
+  color: #333;
+  margin: 1.2rem auto 2rem;
+  line-height: 1.6;
+  max-width: 700px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  z-index: 4;
+}
+
+/* Decorative Circles */
+.decor-circle {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #004aad;
+  z-index: 1;
+  opacity: 0.25;
+}
+
+.circle-1 {
+  width: 180px;
+  height: 180px;
+  background: #0077ff;
+  top: 80px;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.circle-2 {
+  width: 140px;
+  height: 140px;
+  background: #004aad;
+  bottom: 120px;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+/* Floating animation for circles */
+@keyframes floatAnim {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+.float {
+  animation: floatAnim 6s ease-in-out infinite;
+}
+
+.float.delay {
+  animation-delay: 3s;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn 1.2s ease-out both;
+}
+
+/* Wavy background */
+.hero-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  opacity: 0.6; /* lowered opacity */
+  line-height: 0;
+}
+
+.hero-wave img {
+  display: block;
+  width: 100%;
+}
+
+/* ===============================
+   FEATURES SECTION
+================================= */
+.features {
+  padding: 5rem 1rem;
+  background: #fff;
+  text-align: center;
+  position: relative;
+}
+
+.features h2 {
+  color: #004aad;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 74, 173, 0.1);
+  padding: 2rem 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 74, 173, 0.15);
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.3s; }
+.feature-card:nth-child(2) { animation-delay: 0.6s; }
+.feature-card:nth-child(3) { animation-delay: 0.9s; }
+
+/* Responsive circle adjustment */
+@media (max-width: 900px) {
+  .circle-1, .circle-2 {
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+    opacity: 0.2;
+  }
+  .circle-1 {
+    top: 50px;
+  }
+  .circle-2 {
+    bottom: 100px;
+  }
+}
+
+/* ===============================
+   BUTTONS
+================================= */
+.btn {
+  background: #004aad;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #003b8a;
+}
+
+.btn.ghost {
+  background: #ffffff;
+  color: #004aad;
+  border: 2px solid #004aad;
+}
+
+.btn.ghost:hover {
+  background: #004aad;
+  color: #ffffff;
+}
+
+/* ===============================
+   DASHBOARD
+================================= */
+.dash-header {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+}
+
+.dash-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dash-user {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  font-weight: 600;
+  color: #004aad;
+}
+
+.btn.small {
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+}
+
+/* Main area */
+.dashboard {
+  min-height: calc(100vh - 250px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem 1rem 4rem;
+  background: #f9fbff;
+  text-align: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,74,173,0.08);
+  padding: 1.5rem;
+  transition: transform 0.2s;
+}
+.stat-card:hover { transform: translateY(-5px); }
+
+.stat-card h3 {
+  font-size: 1.1rem;
+  color: #004aad;
+  margin-bottom: 0.6rem;
+}
+
+.stat-card p {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #222;
+}
+
+.stat-card.open   { border-top: 4px solid #22c55e; }
+.stat-card.progress { border-top: 4px solid #f59e0b; }
+.stat-card.closed { border-top: 4px solid #9ca3af; }
+
+.dash-actions {
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ===============================
+   TICKET MANAGEMENT
+================================= */
+.tickets-page {
+  background: #f9fbff;
+  padding: 3rem 1rem 5rem;
+  min-height: calc(100vh - 250px);
+}
+
+.ticket-form-section,
+.ticket-list-section {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 74, 173, 0.08);
+  padding: 2rem;
+}
+
+.ticket-form-section h2,
+.ticket-list-section h2 {
+  text-align: center;
+  color: #004aad;
+  margin-bottom: 1.5rem;
+}
+
+.ticket-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.ticket-form input,
+.ticket-form select,
+.ticket-form textarea {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.ticket-form input:focus,
+.ticket-form select:focus,
+.ticket-form textarea:focus {
+  border-color: #004aad;
+  outline: none;
+}
+
+.req {
+  color: crimson;
+}
+
+/* TICKET CARDS */
+.ticket-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.ticket-card {
+  background: #fff;
+  border-left: 5px solid #004aad;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.ticket-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 74, 173, 0.1);
+}
+
+.ticket-info h3 {
+  color: #004aad;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.ticket-info p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.ticket-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ticket-actions button {
+  border: none;
+  background: #f0f4ff;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.ticket-actions button:hover {
+  background: #dbe8ff;
+}
+
+/* STATUS TAG COLORS */
+.status-tag {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.3rem 0.75rem;
+  margin-top: 0.3rem;
+  text-transform: capitalize;
+}
+
+.status-open {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status-in_progress {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-closed {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+/* Edit Mode */
+.editing input,
+.editing textarea,
+.editing select {
+  background: #f9f9f9;
+  border-color: #0077ff;
+}
+
+
+/* ===============================
+   FOOTER
+================================= */
+footer {
+  background: linear-gradient(135deg, #004aad, #0077ff);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  margin-top: 3rem;
+}
+
+footer a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  text-decoration: none;
+}
+
+
+/* ===============================
+   HEADER / NAVIGATION
+================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: #004aad;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.logo .accent {
+  color: #0077ff;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #004aad;
+}
+
+/* Responsive navbar collapse */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    position: absolute;
+    right: 1rem;
+    top: 70px;
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+
+/* ===============================
+   AUTH SCREENS (LOGIN / SIGNUP)
+================================= */
+.auth-bg {
+  min-height: calc(100vh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #eaf3ff 0%, #ffffff 60%);
+  padding: 2rem 1rem;
 }
 
 .auth-box {
-  background: white;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0, 74, 173, 0.1);
   width: 100%;
@@ -24,27 +575,54 @@
   margin-bottom: 0.5rem;
 }
 
+.accent {
+  color: #0077ff;
+}
+
 .auth-form {
   display: grid;
   gap: 1rem;
   text-align: left;
+  margin-top: 1rem;
+}
+
+.auth-form label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
 }
 
 .auth-form input {
   width: 100%;
-  padding: 0.6rem;
+  padding: 0.7rem;
   border-radius: 6px;
   border: 1px solid #ccc;
   font-size: 1rem;
+}
+
+.auth-form input:focus {
+  border-color: #004aad;
+  outline: none;
 }
 
 .error {
   color: crimson;
   font-size: 0.9rem;
   text-align: center;
+  min-height: 1.2rem;
 }
 
 .switch {
   margin-top: 1rem;
   font-size: 0.95rem;
+}
+
+.switch a {
+  color: #004aad;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.switch a:hover {
+  text-decoration: underline;
 }

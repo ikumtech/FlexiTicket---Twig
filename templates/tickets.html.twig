@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<header class="dash-header">
+  <div class="dash-container">
+    <h1>Manage Tickets</h1>
+
+    <div class="dash-user">
+      <a href="?page=dashboard" class="btn ghost small">← Back to Dashboard</a>
+    </div>
+  </div>
+</header>
+
+<main class="tickets-page fade-in">
+  <!-- CREATE NEW TICKET -->
+  <section class="ticket-form-section">
+    <h2>Create New Ticket</h2>
+
+    <form id="ticketForm" class="ticket-form">
+      <label for="title">Title <span class="req">*</span></label>
+      <input id="title" type="text" placeholder="Ticket title..." required />
+
+      <label for="status">Status <span class="req">*</span></label>
+      <select id="status" required>
+        <option value="">Select status</option>
+        <option value="open">Open</option>
+        <option value="in_progress">In Progress</option>
+        <option value="closed">Closed</option>
+      </select>
+
+      <label for="description">Description</label>
+      <textarea id="description" placeholder="Optional ticket details..."></textarea>
+
+      <p id="formError" class="error"></p>
+      <button type="submit" class="btn">Add Ticket</button>
+    </form>
+  </section>
+
+  <!-- TICKET LIST -->
+  <section class="ticket-list-section">
+    <h2>Existing Tickets</h2>
+    <div id="ticketList" class="ticket-list"></div>
+  </section>
+</main>
+{% endblock %}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexi Ticketing — {{ page|capitalize }}</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+  <div class="nav-container">
+    <a href="/" class="logo">
+      Flexi<span class="accent">Ticket</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="?page=login" class="btn ghost">Login</a>
+      <a href="?page=signup" class="btn">Get Started</a>
+    </nav>
+
+    <!-- Mobile Menu Toggle -->
+    <div class="menu-toggle" id="menuToggle">
+      ☰
+    </div>
+  </div>
+</header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 Flexi Ticketing — All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

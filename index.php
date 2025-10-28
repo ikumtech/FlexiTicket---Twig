@@ -1,13 +1,18 @@
 <?php
-require_once __DIR__ . '../vendor/autoload.php';
+// Enable error display
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+require_once __DIR__ . '/vendor/autoload.php';
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
-$templatesPath = __DIR__ . '../templates';
-$loader = new FilesystemLoader($templatesPath);
+// Tell Twig where to find templates
+$loader = new FilesystemLoader(__DIR__ . '/templates');
 $twig = new Environment($loader, ['cache' => false]);
 
+// Decide which page to render
 $page = $_GET['page'] ?? 'landing';
 
 $template = match ($page) {
@@ -18,19 +23,5 @@ $template = match ($page) {
     default => 'landing.html.twig',
 };
 
-// 👇  debug before rendering
-$templateFile = $templatesPath . '/' . $template;
-if (!file_exists($templateFile)) {
-    die("<p style='color:red;font-family:sans-serif'>
-         Template not found: <b>$templateFile</b>
-       </p>");
-}
-
-try {
-    echo $twig->render($template, ['page' => $page]);
-} catch (Throwable $e) {
-    echo "<pre style='color:red;font-family:monospace'>";
-    echo "Twig error: " . $e->getMessage() . "\n";
-    echo $e->getTraceAsString();
-    echo "</pre>";
-}
+// Render the correct Twig file
+echo $twig->render($template, ['page' => $page]);
